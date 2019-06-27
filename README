@@ -1,0 +1,21 @@
+README
+
+You will need a perl environment installed on a machine to run this game.
+
+You will also need the 'Moose' dependency. This can be installed via cpan, which in most
+Linux OS distributions and MacOS is installed by default. You will likely need to install this as sudo, as it
+will attempt to write to the `/usr/` directory path.
+
+There will likely be some configuration questions with cpan, the defaults should be OK. When asked installation method, sudo should work just fine. If you do use 'local', you will have to likely add the line: use lib '/path/that/installed/'
+
+
+If someone is running a fedora clone, you can install simply with `sudo yum install perl-Moose`
+
+How to run:
+
+perl pangaea.pl
+
+You will be prompted with a usage prompt about continent selection. The continent selection was supposed to introduce
+some randomness to an army's attributes, but it did not get implemented in time.
+
+Follow the onscreen prompts to play the game!
