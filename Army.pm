@@ -34,5 +34,20 @@ has 'dexterity' => (
     default => 10,
 );
 
+sub attack_roll {
+    my $self = shift;
+    return int(rand(6)) * $self->strength;
+}
+
+#Recruitment up to 5 new soldiers per recruitment_roll
+sub recruitment_roll {
+    my $self = shift;
+    return $self->num_alive % int(rand(6));
+}
+
+sub defense_roll {
+    my $self = shift;
+    return int(rand(6)) * $self->defense;
+}
 
 1;
