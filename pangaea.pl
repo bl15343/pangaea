@@ -61,18 +61,56 @@ say "$current_player_army";
 
 while ( $armies[BLUE]->num_alive > 0 && $armies[RED]->num_alive > 0 ) {
 
-
-
     say "Current army: $army_color_lut{$current_player_army} " . $armies[$current_player_army]->num_alive ." soldiers alive select an action: [recruit, attack, nothing]";
     my $action = <STDIN>;
     chomp $action;
 
-
     if ( lc $action eq 'recruit') {
-        say 'recruit';
+        my $num_recruits = $armies[$current_player_army]->recruitment_roll();
+        say  "Recruited $num_recruits soldiers to your cause. Current size of army is: " . $armies[$current_player_army]->num_alive;
     }
     elsif ( lc $action eq 'attack' ) {
-        say 'attack';
+
+        my @attack_rolls;
+
+        for (my $a_rolls = 0; $a_rolls < $armies[$current_player_army]->num_alive; $a_rolls++ ) {
+            push @attack_rolls, $armies[$current_player_army]->attack_roll();
+        }
+
+        my @defense_rolls;
+
+        for (my $d_rolls = 0; $d_rolls < $armies[$opposing_player_army]->num_alive; $d_rolls++ ) {
+            push @defense_rolls, $armies[$opposing_player_army]->defense_roll();
+        }
+
+
+        my $attacking_dead = 0;
+        my $defending_dead = 0;
+
+        my $roll_count;
+
+        if ( scalar @defense_rolls <=  scalar @attack_rolls ) {
+            $roll_count = scalar @defense_rolls;
+        }
+        else {
+            $roll_count = scalar @attack_rolls;
+        }
+
+        for ( my $d_rolls = 0; $d_rolls < $roll_count; $d_rolls++ ) {
+            if ( $defense_rolls[$d_rolls ] >= $attack_rolls[$d_rolls] ) {
+                $attacking_dead++;
+            }
+            else {
+                $defending_dead++;
+            }
+        }
+
+        $armies[$current_player_army]->num_alive( $armies[$current_player_army]->num_alive - $attacking_dead );
+        $armies[$opposing_player_army]->num_alive( $armies[$opposing_player_army]->num_alive - $defending_dead );
+
+
+        say "Attacking army lost $attacking_dead soldiers . Defending army lost $defending_dead soldiers";
+
     }
     elsif ( lc $action eq 'nothing' ) {
         #Do nothing

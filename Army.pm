@@ -56,7 +56,9 @@ sub attack_roll {
 #Recruitment up to 5 new soldiers per recruitment_roll
 sub recruitment_roll {
     my $self = shift;
-    return $self->num_alive % int(rand(6));
+    my $recruits = $self->num_alive % (int(rand(6)) + 1 ) ;
+    $self->num_alive( $self->num_alive + $recruits );
+    return $recruits;
 }
 
 sub defense_roll {
