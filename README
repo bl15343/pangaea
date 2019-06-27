@@ -1,6 +1,6 @@
 README
 
-You will need a perl environment installed on a machine to run this game.
+You will need a perl environment of v5.10.1+ installed on a machine to run this game.
 
 You will also need the 'Moose' dependency. This can be installed via cpan, which in most
 Linux OS distributions and MacOS is installed by default. You will likely need to install this as sudo, as it
