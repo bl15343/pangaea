@@ -17,6 +17,7 @@ has 'num_dead' => (
 
 has 'location' => (
     is => 'rw',
+    required => 1
 );
 
 has 'defense' => (
@@ -33,6 +34,19 @@ has 'dexterity' => (
     is => 'rw',
     default => 10,
 );
+
+#On object instantiation, run this
+sub BUILD {
+    my $self = shift;
+    $self->_modify_stats_based_on_location();
+}
+
+sub _modify_stats_based_on_location {
+    my $self = shift;
+    my %location_lut = (
+
+    );
+}
 
 sub attack_roll {
     my $self = shift;
