@@ -130,6 +130,15 @@ while ( $armies[BLUE]->num_alive > 0 && $armies[RED]->num_alive > 0 ) {
 }
 
 
+if ( $armies[BLUE]->num_alive > 0 && $armies[RED]->num_alive == 0) {
+    say "Congratulations to the Blue army for winning the battle!";
+}
+elsif ($armies[BLUE]->num_alive == 0 && $armies[RED]->num_alive > 0) {
+    say "Congratulations to the Red army for winning the battle!";
+}
+else {
+    say "EVERYBODY LOSES!";
+}
 
 sub usage {
 
