@@ -41,16 +41,24 @@ sub BUILD {
     $self->_modify_stats_based_on_location();
 }
 
+
 sub _modify_stats_based_on_location {
     my $self = shift;
     my %location_lut = (
-
+        'NA' => '',
+        'SA' => '',
+        'EU' => '',
+        'AU' => '',
+        'AS' => '',
+        'AT' => '',
     );
+
+    #TODO
 }
 
 sub attack_roll {
     my $self = shift;
-    return int(rand(6)) * $self->strength;
+    return int(rand(6)) * $self->strength + $self->dexterity;
 }
 
 #Recruitment up to 5 new soldiers per recruitment_roll
@@ -63,7 +71,7 @@ sub recruitment_roll {
 
 sub defense_roll {
     my $self = shift;
-    return int(rand(6)) * $self->defense;
+    return int(rand(6)) * $self->defense + $self->dexterity;
 }
 
 1;
